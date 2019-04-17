@@ -1,15 +1,8 @@
 import UIKit
 
-struct User: Codable {
-    let firstName: String
-    let lastName: String
-    let email: String
-    
-    enum CodingKeys: String, CodingKey {
-        case firstName = "first_name"
-        case lastName = "last_name"
-        case email = "email"
-    }
+struct Item {
+    let id: Int
+    let name: String
 }
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -17,13 +10,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var tableview: UITableView!
     @IBOutlet var searchBar: UISearchBar!
     
-    private var dataSource = [User]() {
+    private var dataSource = [Item]() {
         didSet {
             self.tableview.reloadData()
         }
     }
     
-    private var searchDataSource: [User]? {
+    private var searchDataSource: [Item]? {
         didSet {
             self.tableview.reloadData()
         }
@@ -39,18 +32,28 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         self.searchBar.delegate = self
         
-        let url = URL(string: "https://example.org/users.php")
-        
-        URLSession.shared.dataTask(with: url!, completionHandler: { [weak self] (data, response, error) in
-            guard let data = data, error == nil else {
-                print(error?.localizedDescription ?? "An error occurred")
-                return
-            }
-            
-            DispatchQueue.main.async {
-                self?.dataSource = try! JSONDecoder().decode([User].self, from: data)
-            }
-        }).resume()
+        var items = [Item]()
+        items.append(Item(id: 1, name: "Java"))
+        items.append(Item(id: 2, name: "JavaScript"))
+        items.append(Item(id: 3, name: "C++"))
+        items.append(Item(id: 4, name: "Go"))
+        items.append(Item(id: 5, name: "SQL"))
+        items.append(Item(id: 6, name: "Kotlin"))
+        items.append(Item(id: 7, name: "PHP"))
+        items.append(Item(id: 8, name: "Python"))
+        items.append(Item(id: 9, name: "Erlang"))
+        items.append(Item(id: 10, name: "Scheme"))
+        items.append(Item(id: 11, name: "Swift"))
+        items.append(Item(id: 12, name: "R"))
+        items.append(Item(id: 13, name: "Ruby"))
+        items.append(Item(id: 14, name: "Elixir"))
+        items.append(Item(id: 15, name: "Haskell"))
+        items.append(Item(id: 16, name: "Scala"))
+        items.append(Item(id: 17, name: "TypeScript"))
+        items.append(Item(id: 18, name: "C#"))
+        items.append(Item(id: 19, name: "Perl"))
+        items.append(Item(id: 20, name: "Rust"))
+        self.dataSource = items
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -68,16 +71,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "groupCell", for: indexPath)
-        let user = self.searchDataSource?[indexPath.row] ?? self.dataSource[indexPath.row]
-        cell.textLabel?.text = user.firstName
+        let item = self.searchDataSource?[indexPath.row] ?? self.dataSource[indexPath.row]
+        cell.textLabel?.text = item.name
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let user = self.searchDataSource?[indexPath.row] ?? self.dataSource[indexPath.row]
-        let userVC = UserViewController(user: user)
-        self.navigationController?.pushViewController(userVC, animated: true)
-    }
 }
 
 extension ViewController: UISearchBarDelegate {
@@ -86,15 +84,15 @@ extension ViewController: UISearchBarDelegate {
         searchBar.resignFirstResponder()
     }
     
-    // func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-    //     searchBar.showsCancelButton = true
-    //     return true
-    // }
+     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+         searchBar.showsCancelButton = true
+         return true
+     }
     
-    // func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
-    //     searchBar.showsCancelButton = false
-    //     return true
-    // }
+     func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
+         searchBar.showsCancelButton = false
+         return true
+     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
@@ -107,8 +105,7 @@ extension ViewController: UISearchBarDelegate {
             self.searchDataSource = nil
         } else {
             self.searchDataSource = self.dataSource.filter({
-                let fullName = $0.firstName + " " + $0.lastName
-                return fullName.range(of: searchText, options: [.anchored, .caseInsensitive]) != nil
+                return $0.name.range(of: searchText, options: [.anchored, .caseInsensitive]) != nil
             })
         }
     }

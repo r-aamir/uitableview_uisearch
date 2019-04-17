@@ -12,7 +12,6 @@
 		255FE26E2252013600491F97 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 255FE26C2252013600491F97 /* Main.storyboard */; };
 		255FE2702252013700491F97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 255FE26F2252013700491F97 /* Assets.xcassets */; };
 		255FE2732252013700491F97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 255FE2712252013700491F97 /* LaunchScreen.storyboard */; };
-		25852938225392210035958E /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25852937225392210035958E /* UserViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,7 +22,6 @@
 		255FE26F2252013700491F97 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		255FE2722252013700491F97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		255FE2742252013700491F97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		25852937225392210035958E /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +56,6 @@
 			children = (
 				255FE2682252013600491F97 /* AppDelegate.swift */,
 				255FE26A2252013600491F97 /* ViewController.swift */,
-				25852937225392210035958E /* UserViewController.swift */,
 				255FE26C2252013600491F97 /* Main.storyboard */,
 				255FE26F2252013700491F97 /* Assets.xcassets */,
 				255FE2712252013700491F97 /* LaunchScreen.storyboard */,
@@ -139,7 +136,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				255FE26B2252013600491F97 /* ViewController.swift in Sources */,
-				25852938225392210035958E /* UserViewController.swift in Sources */,
 				255FE2692252013600491F97 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -297,7 +293,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.uitableview-uisearch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -317,7 +313,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.uitableview-uisearch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
